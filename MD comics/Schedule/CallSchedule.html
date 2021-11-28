@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call scheduler</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <form class="form-group" action="javascript:sendmail()" method="post">
+            <div id="form">
+                <h1 class="text-white text-center">Scheduling</h1>
+
+                <div id="first-group">
+
+                    <div id="content">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <input type="text" id="fname" placeholder="First name" name="fname" required>
+                    </div>
+
+                    <div id="content">
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                        <input type="number" id="phone" placeholder="Phone number" required>
+                    </div>
+
+                    <div id="content">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        <input type="text" id="call" placeholder="Call Date" required>
+                    </div>
+
+                    <div id="content">
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                        <select id="input-group" style="background-color: black;">
+                            <option value="">No.of members joining with you(optional)</option>
+                            <option value="">1-5</option>
+                            <option value="">6-10</option>
+                            <option value="">11-20</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div id="second-group">
+
+                    <div id="content">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <input type="text" id="lname" placeholder="Last name" name="lname" required>
+                    </div>
+
+                    <div id="content">
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        <input type="email" id="email" placeholder="Email">
+                    </div>
+
+                    <div id="content">
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                        <select id="input-group" style="background-color: black;">
+                            <option value="">Support Type</option>
+                            <option value="">Super-hero idea</option>
+                            <option value="">Story writing</option>
+                            <option value="">Character design </option>
+                            <option value="">Money</option>
+                        </select>
+                    </div>
+            
+                </div>
+
+                <button type="submit" value="Submit" id="submit-btn" onclick="UserRegister()">Schedule Now</button> <br>
+                <a href="../index.html" >Go back</a>
+
+            </div>
+        </form>
+    </div>
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-analytics.js"></script>
+    <script src="data.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="server.js"></script>
+    <script>  
+
+        function sendmail(){
+       
+               var name = $('#fname').val();
+               var email = $('#email').val();
+               var subject = $('#phone').val();
+         var message = $('#call').val();
+   
+               // var body = $('#body').val();
+   
+               var Body='Name: '+name+'<br>Email: '+email+'<br>number: '+subject+'<br>date: '+message;
+               //console.log(name, phone, email, message);
+   
+               Email.send({
+           SecureToken:"fbf31702-bb7f-4a4e-9c1c-4ccf17ee777f",
+                   To: 'mohandatta.j@gmail.com',
+                   From: email,
+                   Subject: "Call scheduled by "+name,
+                   Body: Body
+               }).then(
+                   message =>{
+                       //console.log (message);
+                       if(message=='OK'){
+                       alert('Your call has been scheduled. Thank you for connecting.');
+                       }
+                       else{
+                           console.error (message);
+                           alert('There is error at scheduling call. Plz try again later ')
+                           
+                       }
+   
+                   }
+               );
+   
+   
+   
+           }
+   
+   
+    
+    </script>
+</body>
+</html>

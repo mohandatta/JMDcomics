@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Idea?
+    </title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <span class="big-circle"></span>
+      <img src="img/shape.png" class="square" alt="" />
+      <div class="form">
+        <div class="contact-info">
+          <h3 class="title">Let's get in touch</h3>
+          <p class="text">
+           You can directly contact with JMD comics founder "Jandhyala mohan datta"
+          </p>
+
+          <div class="info">
+            <div class="information">
+              <img src="img/location.png" class="icon" alt="" />
+              <p>Subbaraju street, muthyalampadu , vijayawada, andhra pradesh, india</p>
+            </div>
+            <div class="information">
+              <img src="img/email.png" class="icon" alt="" />
+              <p>mohandatta.j@gmail.com</p>
+            </div>
+            <div class="information">
+              <img src="img/phone.png" class="icon" alt="" />
+              <p>8553745678</p>
+            </div>
+          </div>
+
+          <div class="social-media">
+            <p>Connect with us :</p>
+            <div class="social-icons">
+              <a href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <span class="circle one"></span>
+          <span class="circle two"></span>
+
+          <form action="https://formspree.io/f/mnqlkgdj"
+          method="POST" autocomplete="off">
+            <h3 class="title">Write the idea</h3>
+            <div class="input-container">
+              <input type="text" name="name" class="input" id="fname" required />
+              <label for="">Username</label>
+              <span>Username</span>
+            </div>
+            <div class="input-container">
+              <input type="email" name="email" class="input" id="email" required />
+              <label for="">Email</label>
+              <span>Email</span>
+            </div>
+            <div class="input-container">
+              <input type="tel" name="phone" class="input" id="phone" required/>
+              <label for="">Phone</label>
+              <span>Phone</span>
+            </div>
+            <div class="input-container textarea">
+              <textarea name="message" class="input" id="call" required></textarea>
+              <label for="">Super hero idea </label>
+              <span>Write....</span>
+            </div>
+            <input type="submit" value="Submit" id="submit-btn" class="btn" />
+            <a href="index.html#services"><input value="               Go back" class="btn" /></a>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="app1.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-analytics.js"></script>
+    <script src="data.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="server.js"></script>
+    <script>  
+
+        function sendmail(){
+       
+               var name = $('#fname').val();
+               var email = $('#email').val();
+               var subject = $('#phone').val();
+         var message = $('#call').val();
+   
+               // var body = $('#body').val();
+   
+               var Body='Name: '+name+'<br>Email: '+email+'<br>number: '+subject+'<br>Idea: '+message;
+               //console.log(name, phone, email, message);
+   
+               Email.send({
+           SecureToken:"fbf31702-bb7f-4a4e-9c1c-4ccf17ee777f",
+                   To: 'mohandatta.j@gmail.com',
+                   From: "JMDcomics@gmail.com",
+                   Subject: "Call scheduled by "+name,
+                   Body: Body
+               }).then(
+                   message =>{
+                       //console.log (message);
+                       if(message=='OK'){
+                       alert('Your call has been scheduled. Thank you for connecting.');
+                       }
+                       else{
+                           console.error (message);
+                           alert('There is error at scheduling call. Plz try again later ')
+                           
+                       }
+   
+                   }
+               );
+   
+   
+   
+           }
+   
+   
+    
+    </script>
+  </body>
+</html>
